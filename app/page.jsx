@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 const getData = async () => {
   const data = await fetch("https://moviesapi.ir/api/v1/movies?page={page}", {
     cache: "no-store",
@@ -5,10 +7,8 @@ const getData = async () => {
   return data.json();
 };
 
-import Image from "next/image";
 const Home = async () => {
   const data = await getData();
-  console.log(data.data);
 
   return (
     <main className="flex flex-col gap-8 container mx-auto">
@@ -16,7 +16,8 @@ const Home = async () => {
       <div className="flex justify-between items-center flex-wrap">
         {data.data.map((mov, index) => {
           return (
-            <div
+            <Link
+              href={`/movies/${mov.id}`}
               className=" relative h-[32rem] w-72 border-2 border-zinc-300 rounded-2xl p-4 my-10"
               key={index}
             >
@@ -38,7 +39,7 @@ const Home = async () => {
                   {mov.country}
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
