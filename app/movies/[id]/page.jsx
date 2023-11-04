@@ -57,12 +57,12 @@ const Single = async ({ params }) => {
           />
         </div>
       </section>
-      <section className="flex justify-between items-center my-14">
+      <section className="flex justify-around items-center my-14 flex-wrap ">
         {data.images.map((item, index) => {
           return (
             <Image
               key={index}
-              className="rounded-3xl"
+              className="rounded-3xl my-4"
               width={400}
               height={200}
               src={item}
